@@ -205,6 +205,31 @@ void executeCommands(ExpandedMotorCommands* commands) {
 
 ## ⚙️ Configuração e Uso
 
+### Conexões de Hardware (Ambas as Versões)
+
+#### Alimentação através do L298N
+```
+Borne de parafuso do L298N:
++12V → Duas baterias lipo em série (7.4V-8.4V)
+GND  → GND geral do circuito  
++5V  → Alimentação +5V do ESP32
+
+⚠️ CRÍTICO: NÃO ligue as baterias direto ao ESP32!
+           Isto pode danificá-lo permanentemente.
+           
+✅ USE: O regulador de tensão interno do L298N
+        (borne +5V → ESP32)
+```
+
+**Jumper do Regulador:**  
+Mantenha o jumper próximo ao borne **SEMPRE LIGADO** para ativar o regulador de 5V.
+
+**Documentação Técnica:**
+- **L298N**: Consulte o datasheet do módulo L298N para especificações completas, diagramas de pinout e características elétricas
+- **ESP32-C3**: Para detalhes sobre alimentação, consumo e especificações técnicas, consulte o manual do módulo ESP32-C3
+
+---
+
 ### Sistema Básico
 **Para projetos simples com 1 joystick:**
 1. Upload do `receive.ino` no receptor

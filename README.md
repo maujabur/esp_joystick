@@ -137,19 +137,39 @@ SW      ->  GPIO 2 (botão)
 ```
 
 ### 3. Conectar a ponte H L298N no receptor (pinos agrupados GPIO 1-4)
+
+#### Conexões de Controle (ESP32 → L298N)
 ```
 ESP32-C3 → L298N
 Pino 1   → IN1 (PWM+Direção motor esquerdo)
 Pino 2   → IN2 (PWM+Direção motor esquerdo)
 Pino 3   → IN3 (PWM+Direção motor direito)
 Pino 4   → IN4 (PWM+Direção motor direito)
-5V       → 5V
-GND      → GND
-12V      → 12V (alimentação motores)
 
 IMPORTANTE: ENA e ENB devem estar jumpeados (sempre HIGH)
 VANTAGEM: Pinos agrupados (1-4) no mesmo lado do módulo
 ```
+
+#### Alimentação através do Regulador L298N
+```
+Borne de parafuso do L298N:
++12V → Duas baterias lipo em série (7.4V-8.4V)
+GND  → GND geral do circuito
++5V  → Alimentação +5V do ESP32
+
+⚠️ CRÍTICO: NÃO ligue as duas baterias direto ao ESP32!
+         Isto pode danificá-lo permanentemente.
+         
+✅ USE: O regulador de tensão interno do L298N
+        (borne +5V → ESP32)
+```
+
+**Jumper do Regulador:**  
+Mantenha o jumper próximo ao borne **SEMPRE LIGADO** para ativar o regulador de 5V.
+
+**Documentação:**
+- **L298N**: Consulte o datasheet do módulo L298N para especificações completas e diagramas de pinout
+- **ESP32-C3**: Para detalhes sobre alimentação e especificações técnicas, consulte o manual do módulo ESP32-C3
 
 ### 4. Faça upload nos dispositivos
 
@@ -185,6 +205,9 @@ Se você usa **motores de 5V** com **2 baterias de lítio** (7.4V-8.4V), **SEMPR
 - Sem limitação: **168% da tensão nominal** = Motor queima! 🔥
 - Com 60%: 8.4V × 0.6 = **5.0V** = Seguro! ✅
 
+**💡 Dica de Alimentação:**  
+Use o regulador interno do L298N para alimentar o ESP32. Conecte o borne +5V do L298N ao +5V do ESP32, evitando danos por sobretensão.
+
 ## Monitor do Receptor
 O receptor exibe dados detalhados e comandos de motor no Serial Monitor:
 ```
@@ -216,7 +239,9 @@ O receptor exibe dados detalhados e comandos de motor no Serial Monitor:
 ## Hardware L298N
 - **ENA/ENB**: Jumpeados (sempre HIGH) 
 - **IN1-IN4**: Recebem PWM+direção do ESP32
-- **Vantagem**: Usa apenas 4 pinos em vez de 6
+- **Regulador 5V**: Use o borne +5V para alimentar o ESP32
+- **Jumper**: Mantenha ligado para ativar o regulador interno
+- **Vantagem**: Usa apenas 4 pinos + alimentação segura do ESP32
 - **Desvantagem**: Nenhuma! Funciona perfeitamente
 
 ## Segurança

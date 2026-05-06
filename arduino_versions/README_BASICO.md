@@ -56,6 +56,24 @@ ENA: Jumper (sempre HIGH)
 ENB: Jumper (sempre HIGH)
 ```
 
+### Alimentação do Sistema
+```
+Borne de parafuso do L298N:
++12V → Duas baterias lipo em série (7.4V-8.4V)
+GND  → GND geral do circuito
++5V  → Alimentação +5V do ESP32
+
+⚠️ NUNCA ligue as baterias direto ao ESP32!
+✅ USE o regulador interno do L298N (borne +5V → ESP32)
+```
+
+**Jumper do Regulador:**  
+Mantenha o jumper próximo ao borne de alimentação **LIGADO** para ativar o regulador de 5V.
+
+**Documentação Técnica:**
+- **L298N**: Consulte o datasheet do módulo L298N para especificações completas, diagramas de pinout e características elétricas
+- **ESP32-C3**: Para informações detalhadas sobre alimentação, consumo e especificações técnicas, consulte o manual do módulo ESP32-C3
+
 ## 🚀 Como Usar
 
 1. **Configure os MACs**: 

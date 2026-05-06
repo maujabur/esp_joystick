@@ -73,6 +73,28 @@ Sistema de controle remoto usando ESP32-C3 e ESP-NOW, com versões para diferent
 
 ---
 
+## 🔌 Conexões de Hardware (Ambas as Versões)
+
+### Alimentação via L298N (Recomendado)
+```
+Borne de parafuso do L298N:
++12V → Duas baterias lipo em série (7.4V-8.4V)
+GND  → GND geral do circuito
++5V  → Alimentação +5V do ESP32
+
+⚠️ NUNCA ligue as baterias direto ao ESP32!
+✅ USE o regulador interno do L298N (borne +5V → ESP32)
+```
+
+**Jumper do Regulador:**  
+Mantenha o jumper próximo ao borne **SEMPRE LIGADO** para ativar o regulador de 5V.
+
+**Documentação Técnica:**
+- **L298N**: Consulte o datasheet do módulo L298N para especificações completas e diagramas
+- **ESP32-C3**: Para informações detalhadas sobre alimentação e especificações técnicas, consulte o manual do módulo ESP32-C3
+
+---
+
 ## ⚙️ Configurações Importantes
 
 ### Proteção de Motores
