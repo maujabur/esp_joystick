@@ -10,6 +10,7 @@
 // As rampas são aplicadas independentemente a cada motor
 //----------------------------------------------------------------------
 
+#include <Arduino.h>
 #include <WiFi.h>
 #include <esp_now.h>
 #include <esp_wifi.h>
